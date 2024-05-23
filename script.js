@@ -5,7 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("product-modal");
     const modalContent = document.getElementById("modal-details");
     const closeModal = document.querySelector(".close");
-    let cart = [];
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+    // Update cart count on page load
+    cartCount.textContent = cart.length;
   
     // Fetch products from DummyJSON API
     fetch("https://dummyjson.com/products")
@@ -32,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
       // Add event listener for product clicks
       document.querySelectorAll(".product").forEach(product => {
         product.addEventListener("click", (event) => {
-          // Prevent the button click from triggering the modal
           if (event.target.tagName.toLowerCase() === 'button') {
             return;
           }
@@ -52,12 +54,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     function addToCart(event) {
-      event.stopPropagation(); // Prevent the modal from opening when adding to cart
+      event.stopPropagation();
       const productId = event.target.getAttribute("data-id");
-      if (!cart.includes(productId)) {
-        cart.push(productId);
-        cartCount.textContent = cart.length;
-      }
+  
+      fetch(`https://dummyjson.com/products/${productId}`)
+        .then(response => response.json())
+        .then(product => {
+          if (!cart.find(item => item.id === product.id)) {
+            cart.push(product);
+            cartCount.textContent = cart.length;
+            localStorage.setItem('cart', JSON.stringify(cart));
+          }
+  
+          // Navigate to cart page
+          window.location.href = 'cart.html';
+        })
+        .catch(error => console.error("Error adding product to cart:", error));
     }
   
     function showModal(product) {
@@ -70,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       modal.style.display = "block";
   
-      // Add event listener for modal "Add to Cart" button
       modalContent.querySelector("button").addEventListener("click", addToCart);
     }
   
@@ -85,6 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   
     cartButton.addEventListener("click", () => {
-      alert(`Cart Items: ${cart.join(", ")}`);
+      window.location.href = 'cart.html';
     });
   });
