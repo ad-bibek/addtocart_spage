@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const buyButton = document.getElementById("buy-button");
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Function to display and render cart items
+    
     function renderCartItems() {
-        cartItemsContainer.innerHTML = ""; // Clear previous items
+        cartItemsContainer.innerHTML = ""; 
 
         if (cart.length === 0) {
             cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
@@ -31,28 +31,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Function to remove an item from the cart
-    function removeFromCart(event) {
+        function removeFromCart(event) {
         const productId = event.target.getAttribute("data-id");
-        cart = cart.filter(item => item.id !== productId);
+        cart = [];
         localStorage.setItem('cart', JSON.stringify(cart));
         renderCartItems();
     }
 
-    // Function to handle the buy button click
-    buyButton.addEventListener("click", () => {
+        buyButton.addEventListener("click", () => {
         if (cart.length === 0) {
             alert("Your cart is empty!");
             return;
         }
 
-        // Proceed with the buying process
         alert("Thank you for your purchase!");
         cart = [];
         localStorage.setItem('cart', JSON.stringify(cart));
         renderCartItems();
     });
 
-    // Initial display of cart items
-    renderCartItems();
+       renderCartItems();
 });
