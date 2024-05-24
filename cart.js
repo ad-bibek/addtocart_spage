@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const buyButton = document.getElementById("buy-button");
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    
+    // Function to render cart items
     function renderCartItems() {
-        cartItemsContainer.innerHTML = ""; 
+        cartItemsContainer.innerHTML = "";
 
         if (cart.length === 0) {
             cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
@@ -24,21 +24,22 @@ document.addEventListener("DOMContentLoaded", () => {
             cartItemsContainer.appendChild(itemElement);
         });
 
-        // Attach event listeners to remove buttons
         const removeButtons = cartItemsContainer.querySelectorAll(".remove-button");
         removeButtons.forEach(button => {
             button.addEventListener("click", removeFromCart);
         });
     }
 
-        function removeFromCart(event) {
+    // write Function to remove an item from the cart
+    function removeFromCart(event) {
         const productId = event.target.getAttribute("data-id");
-        cart = [];
-        localStorage.setItem('cart', JSON.stringify(cart));
+        
+               localStorage.setItem('cart', JSON.stringify(cart));
         renderCartItems();
     }
 
-        buyButton.addEventListener("click", () => {
+    // Handle the Buy Now button click
+    buyButton.addEventListener("click", () => {
         if (cart.length === 0) {
             alert("Your cart is empty!");
             return;
@@ -50,5 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
         renderCartItems();
     });
 
-       renderCartItems();
+    // Initial render of cart items
+    renderCartItems();
 });
