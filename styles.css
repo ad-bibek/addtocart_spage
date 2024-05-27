@@ -212,3 +212,60 @@ header div {
 .cart-item p {
   font-size: 1rem;
 }
+
+/* footer */
+footer {
+    background-color: #888cf5;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content ul {
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.footer-content ul.social-media,
+.footer-content ul.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.footer-content ul.social-media h5 {
+    flex-basis: 100%;
+    margin-bottom: 10px;
+}
+
+.footer-content ul li {
+    display: inline;
+}
+
+.footer-content ul a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s;
+}
+
+.footer-content ul a:hover {
+    background-color: #444;
+    border-radius: 5px;
+}
+
+.footer-content p {
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+.footer-content i {
+    margin-right: 5px;
+}
