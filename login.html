@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Amazon</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-logo">
+            <a href="index.html"><img src="" alt="Sign Logo"></a>
+        </div>
+        <div class="login-box">
+            <h1>Sign-In</h1>
+            <form id="loginForm">
+                <label for="email">Email or mobile phone number</label>
+                <input type="text" id="loginEmail" name="email" required>
+                
+                <label for="password">Password</label>
+                <input type="password" id="loginPassword" name="password" required>
+                
+                <button type="submit" class="login-button">Sign-In</button>
+            </form>
+            <p id="loginMessage"></p>
+            <p class="create-account">
+                <a href="register.html">Create your account | Sign-up?</a>
+            </p>
+        </div>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>
