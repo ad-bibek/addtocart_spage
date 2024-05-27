@@ -91,15 +91,22 @@ header div {
   font-weight: 600;
   font-size: 18px;
   cursor: pointer;
+
 }
 .control_next {
   right: 0;
 }
+
+
 #product-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding: 1rem;
+  position: relative;
+  top: -7.5cm; 
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.8); 
 }
 
 .product {
@@ -144,7 +151,7 @@ header div {
 .modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   left: 0;
   top: 0;
   width: 100%;
