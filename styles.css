@@ -31,6 +31,28 @@ header div {
   border: 1px solid #ccc;
 }
 
+#search-button {
+  background-color: #74eebf;
+  border: none;
+  position: relative;
+  padding: auto;
+
+  }
+ 
+#search-button:hover{
+  background-color: #5ae38f;
+}
+
+#user-button {
+  background-color: #74eebf;
+  position: relative;
+  padding: auto;
+
+}
+
+#user-button:hover{
+  background-color: #51ff25;
+}
 #cart-button {
   background-color: #007bff;
   color: white;
@@ -43,6 +65,7 @@ header div {
 #cart-button:hover {
   background-color: #0056b3;
 }
+
 
 .header-slider ul {
   display: -webkit-box;
