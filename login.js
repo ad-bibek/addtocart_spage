@@ -8,27 +8,28 @@ function loginUser() {
     const password = document.getElementById('loginPassword').value;
     const loginMessage = document.getElementById('loginMessage');
 
-    // Basic email validation
     if (!validateEmail(email)) {
         loginMessage.textContent = 'Invalid email format.';
         loginMessage.style.color = 'red';
         return;
     }
 
-   
     if (email === '' || password === '') {
         loginMessage.textContent = 'Both fields are required.';
         loginMessage.style.color = 'red';
         return;
     }
 
-    
     const storedUser = localStorage.getItem(email);
     if (storedUser) {
         const userData = JSON.parse(storedUser);
         if (userData.password === password) {
-            loginMessage.textContent = 'Login successful!';
+            loginMessage.textContent = 'Login successful! Redirecting to homepage...';
             loginMessage.style.color = 'green';
+            
+            setTimeout(function() {
+                location.href = 'index.html';
+            }, 2000);
         } else {
             loginMessage.textContent = 'Incorrect password.';
             loginMessage.style.color = 'red';
@@ -40,7 +41,6 @@ function loginUser() {
 }
 
 function validateEmail(email) {
-    
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
 }

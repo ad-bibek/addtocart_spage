@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Function to remove an item from the cart
-    function removeFromCart(event) {
+        function removeFromCart(event) {
         const productId = parseInt(event.target.getAttribute("data-id"), 10);
         cart = cart.filter(item => item.id !== productId);
         localStorage.setItem('cart', JSON.stringify(cart));

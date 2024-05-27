@@ -13,33 +13,41 @@
       <form id="search-form">
         <input type="text" id="search-bar" placeholder="Search for products...">
         <button type="submit" id="search-button"><img src="assets/search_icon.png" width="30" alt=""></button>
-
       </form>
       <div class="nav-account">
         <a href="login.html"></a>
         <div class="account-dropdown hidden">
-            <div class="sign-in">
-               <a href="login.html"> <button>Sign in</button></a>
-                          </div>
-      <button id="cart-button">Cart (<span id="cart-count">0</span>)</button>
+          <div class="sign-in">
+            <a href="login.html"><button>Sign in</button></a>
+          </div>
+        </div>
+        <button id="cart-button">Cart (<span id="cart-count">0</span>)</button>
+      </div>
     </div>
-
-    
   </header>
   <div class="header-slider">
-    <a href="#" class="control_prev">&#129144</a>
-    <a href="#" class="control_next">&#129146</a>
+    <a href="#" class="control_prev">&#129144;</a>
+    <a href="#" class="control_next">&#129146;</a>
     <ul>
-        <img src="assets/header1.jpg" class="header-img" alt="Loading...">
-        <img src="assets/header2.jpg" class="header-img" alt="Loading...">
-        <img src="assets/header3.jpg" class="header-img" alt="Loading...">
-        <img src="assets/header4.jpg" class="header-img" alt="Loading...">
-        <img src="assets/header5.jpg" class="header-img" alt="Loading...">
-        <img src="assets/header6.jpg" class="header-img" alt="Loading...">
-        </ul>
-</div>
+      <img src="assets/header1.jpg" class="header-img" alt="Loading...">
+      <img src="assets/header2.jpg" class="header-img" alt="Loading...">
+      <img src="assets/header3.jpg" class="header-img" alt="Loading...">
+      <img src="assets/header4.jpg" class="header-img" alt="Loading...">
+      <img src="assets/header5.jpg" class="header-img" alt="Loading...">
+      <img src="assets/header6.jpg" class="header-img" alt="Loading...">
+    </ul>
+  </div>
   <main>
-    <div id="product-list"></div>
+    <div id="product-list">
+      <!-- Example product items -->
+      <div class="product">
+        <img src="assets/product1.jpg" alt="Product 1">
+        <h2>Product 1</h2>
+        <p>Price: $10</p>
+        <button class="add-to-cart" data-id="1" data-title="Product 1" data-price="10" data-thumbnail="assets/product1.jpg">Add to Cart</button>
+      </div>
+      <!-- Repeat for other products -->
+    </div>
   </main>
 
   <!-- Modal -->
@@ -50,7 +58,6 @@
     </div>
   </div>
   
-
   <script src="script.js"></script>
 </body>
 </html>
