@@ -29,7 +29,7 @@ header h1 {
 }
 
 header button {
-    background-color: #ff9900;
+    background-color: #9ce2f3;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -38,7 +38,7 @@ header button {
 }
 
 header button:hover {
-    background-color: #e68a00;
+    background-color: #5bf402;
 }
 
 /* Main content styling */
@@ -73,7 +73,7 @@ main {
 }
 
 .cart-item button {
-    background-color: #ff9900;
+    background-color: #53c3c3;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -81,19 +81,19 @@ main {
 }
 
 .cart-item button:hover {
-    background-color: #e68a00;
+    background-color: #53c3c3;
 }
 
 /* Footer styling */
 footer {
-    background-color: #232f3e;
+    background-color: #53c3c3;
     color: white;
     padding: 20px;
     text-align: center;
 }
 
 footer button {
-    background-color: #ff9900;
+    background-color: #7c1e79;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -102,5 +102,5 @@ footer button {
 }
 
 footer button:hover {
-    background-color: #e68a00;
+    background-color: #8b10a7;
 }

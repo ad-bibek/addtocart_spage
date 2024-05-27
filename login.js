@@ -29,7 +29,7 @@ function loginUser() {
             
             setTimeout(function() {
                 location.href = 'index.html';
-            }, 2000);
+            }, 1000);
         } else {
             loginMessage.textContent = 'Incorrect password.';
             loginMessage.style.color = 'red';
