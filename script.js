@@ -9,16 +9,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchBar = document.getElementById("search-bar");
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   let products = [];
+  const token = 'YOUR_BEARER_TOKEN_HERE'; // Replace with your actual token
   setupSlider();
 
   cartCount.textContent = cart.length;
 
-  axios.get("https://dummyjson.com/products")
-    .then(response => {
-      products = response.data.products;
-      displayProducts(products);
-    })
-    .catch(error => console.error("Error fetching products:", error));
+  axios.get("https://dummyjson.com/products", {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  .then(response => {
+    products = response.data.products;
+    displayProducts(products);
+  })
+  .catch(error => console.error("Error fetching products:", error));
 
   function displayProducts(products) {
     productList.innerHTML = '';
@@ -42,14 +47,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const productId = product.getAttribute('data-id');
-        axios.get(`https://dummyjson.com/products/${productId}`)
-          .then(response => {
-            const productData = response.data;
-            showModal(productData);
-          })
-          .catch(error => {
-            console.error("Error fetching product details:", error);
-          });
+        axios.get(`https://dummyjson.com/products/${productId}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+        .then(response => {
+          const productData = response.data;
+          showModal(productData);
+        })
+        .catch(error => {
+          console.error("Error fetching product details:", error);
+        });
       });
     });
 
@@ -62,19 +71,23 @@ document.addEventListener("DOMContentLoaded", () => {
     event.stopPropagation();
     const productId = event.target.getAttribute("data-id");
 
-    axios.get(`https://dummyjson.com/products/${productId}`)
-      .then(response => {
-        const product = response.data;
-        if (!cart.find(item => item.id === product.id)) {
-          cart.push(product);
-          cartCount.textContent = cart.length;
-          localStorage.setItem('cart', JSON.stringify(cart));
-        }
+    axios.get(`https://dummyjson.com/products/${productId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      const product = response.data;
+      if (!cart.find(item => item.id === product.id)) {
+        cart.push(product);
+        cartCount.textContent = cart.length;
+        localStorage.setItem('cart', JSON.stringify(cart));
+      }
 
-        // Navigate to cart page
-        window.location.href = 'cart.html';
-      })
-      .catch(error => console.error("Error adding product to cart:", error));
+      // Navigate to cart page
+      window.location.href = 'cart.html';
+    })
+    .catch(error => console.error("Error adding product to cart:", error));
   }
 
   function showModal(product) {
