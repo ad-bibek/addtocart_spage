@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Your cart is empty!");
             return;
         }
-
         alert("Thank you for your purchase!");
         cart = [];
         localStorage.setItem('cart', JSON.stringify(cart));

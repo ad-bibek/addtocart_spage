@@ -11,13 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let products = [];
   setupSlider();
 
-  // Update cart count on page load
   cartCount.textContent = cart.length;
 
-  fetch("https://dummyjson.com/products")
-    .then(response => response.json())
-    .then(data => {
-      products = data.products;
+  axios.get("https://dummyjson.com/products")
+    .then(response => {
+      products = response.data.products;
       displayProducts(products);
     })
     .catch(error => console.error("Error fetching products:", error));
@@ -43,11 +41,15 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        const productId = product.getAttribute("data-id");
-        fetch(`https://dummyjson.com/products/${productId}`)
-          .then(response => response.json())
-          .then(productData => showModal(productData))
-          .catch(error => console.error("Error fetching product details:", error));
+        const productId = product.getAttribute('data-id');
+        axios.get(`https://dummyjson.com/products/${productId}`)
+          .then(response => {
+            const productData = response.data;
+            showModal(productData);
+          })
+          .catch(error => {
+            console.error("Error fetching product details:", error);
+          });
       });
     });
 
@@ -60,9 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
     event.stopPropagation();
     const productId = event.target.getAttribute("data-id");
 
-    fetch(`https://dummyjson.com/products/${productId}`)
-      .then(response => response.json())
-      .then(product => {
+    axios.get(`https://dummyjson.com/products/${productId}`)
+      .then(response => {
+        const product = response.data;
         if (!cart.find(item => item.id === product.id)) {
           cart.push(product);
           cartCount.textContent = cart.length;
@@ -112,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     displayProducts(filteredProducts);
   });
+
   function setupSlider() {
     const imgs = document.querySelectorAll('.header-slider ul img');
     const prev_btn = document.querySelector('.control_prev');
@@ -120,21 +123,21 @@ document.addEventListener("DOMContentLoaded", () => {
     let n = 0;
 
     function changeSlide() {
-        imgs.forEach((img, i) => {
-            img.style.display = i === n ? 'block' : 'none';
-        });
+      imgs.forEach((img, i) => {
+        img.style.display = i === n ? 'block' : 'none';
+      });
     }
 
     changeSlide();
 
     prev_btn.addEventListener('click', () => {
-        n = (n > 0) ? n - 1 : imgs.length - 1;
-        changeSlide();
+      n = (n > 0) ? n - 1 : imgs.length - 1;
+      changeSlide();
     });
 
     next_btn.addEventListener('click', () => {
-        n = (n < imgs.length - 1) ? n + 1 : 0;
-        changeSlide();
+      n = (n < imgs.length - 1) ? n + 1 : 0;
+      changeSlide();
     });
-}
+  }
 });
